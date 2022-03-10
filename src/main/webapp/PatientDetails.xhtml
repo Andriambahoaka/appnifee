@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   <f:metadata>
+      <f:viewParam name="idPatient" value="#{patientDetailsMBean.idPatient}"
+                   required="true"/>
+      <f:viewAction action="#{patientDetailsMBean.loadPatient}"/>
+   </f:metadata>
+   <h:head>
+      <title>Fiche du patient  </title>
+   </h:head>
+   <h:body>
+      <f:view>
+         <ui:include src="menubar.xhtml" />
+         <p:card style="width: 25rem; margin-bottom: 2em;margin-left: 400px;">
+            <h:form>
+               <h3><h:outputText value=" Fiche du patient"/></h3>
+               <f:facet name="title">
+                  Fiche du patient
+               </f:facet>
+               <h:panelGrid columns="2">
+                  <p:outputLabel value="Id:" for="id" />
+                  <p:inputText  readonly="true"  id="id" value="#{patientDetailsMBean.details.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
+                  <p:outputLabel value="Sexe:" for="sexe" />
+                  <p:inputText id="sexe" value="#{patientDetailsMBean.details.sexe}" title="Sexe" required="true" requiredMessage="The Sexe field is required."/>
+                  <p:outputLabel value="Prenom:" for="prenom" />
+                  <p:inputText id="prenom" value="#{patientDetailsMBean.details.prenom}" title="Prenom" required="true" requiredMessage="The Prenom field is required."/>
+                  <p:outputLabel value="Nom:" for="nom" />
+                  <p:inputText id="nom" value="#{patientDetailsMBean.details.nom}" title="Nom" required="true" requiredMessage="The Nom field is required."/>
+                  <p:outputLabel value="Contact:" for="contact" />
+                  <p:inputText id="contact" value="#{patientDetailsMBean.details.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
+                  <p:outputLabel value="DateNaissance:" for="dateNaissance" />
+                  <p:inputText id="dateNaissance" value="#{patientDetailsMBean.details.dateNaissance}" title="DateNaissance" required="true" requiredMessage="The DateNaissance field is required.">
+                     <f:convertDateTime pattern="MM/dd/yyyy" />
+                  </p:inputText>
+                  <p:outputLabel value="Adresse:" for="adresse" />
+                  <p:inputText id="adresse" value="#{patientDetailsMBean.details.adresse}" title="Adresse" required="true" requiredMessage="The Adresse field is required."/>
+                  <p:button styleClass="ui-button-warning" id="back" value="Revenir à la liste" outcome="PatientList"/>
+                  <p:commandButton styleClass="ui-button-info" id="update" value="Enregistrer" action="#{patientDetailsMBean.update}"/>
+               </h:panelGrid>
+            </h:form>
+         </p:card>
+      </f:view>
+   </h:body>
+</html>
+
